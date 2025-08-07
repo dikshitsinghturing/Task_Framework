@@ -146,17 +146,17 @@ def env_interface():
             environment = passed_inputs.get('environment') if passed_inputs else None
             
             global last_environment, last_interface, data
-            if (environment != last_environment):
-                data.clear()
-                last_environment = environment
-                ENVS_PATH = "environments"
-                DATA_PATH = f"{ENVS_PATH}/{environment}/data"
-                data_files = os.listdir(DATA_PATH)
-                for data_file in data_files:
-                    if data_file.endswith(".json"):
-                        data_file_path = os.path.join(DATA_PATH, data_file)
-                        with open(data_file_path, "r") as file:
-                            data[data_file.split('.')[0]] = json.load(file)
+            # if (environment != last_environment):
+            data.clear()
+            last_environment = environment
+            ENVS_PATH = "environments"
+            DATA_PATH = f"{ENVS_PATH}/{environment}/data"
+            data_files = os.listdir(DATA_PATH)
+            for data_file in data_files:
+                if data_file.endswith(".json"):
+                    data_file_path = os.path.join(DATA_PATH, data_file)
+                    with open(data_file_path, "r") as file:
+                        data[data_file.split('.')[0]] = json.load(file)
             # print(data)
             
             if environment:
